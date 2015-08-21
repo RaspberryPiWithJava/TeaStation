@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/Users/sjc/dev/JavaScale/src/com/nighthacking/ui/CoffeeUI.fxml</file>
+            <file>file:/Users/sjc/dev/JavaScale/src/com/nighthacking/recipe/Display.java</file>
+            <file>file:/Users/sjc/dev/JavaScale/src/com/nighthacking/JavaFXTest.java</file>
+            <file>file:/Users/sjc/dev/JavaScale/src/com/nighthacking/ui/UIDisplay.java</file>
+            <file>file:/Users/sjc/dev/JavaScale/src/com/nighthacking/JavaScale.java</file>
+            <file>file:/Users/sjc/dev/JavaScale/src/com/nighthacking/recipe/RecipeEnvironment.java</file>
+            <file>file:/Users/sjc/dev/JavaScale/src/com/nighthacking/recipes/PourOverCoffee.java</file>
+            <file>file:/Users/sjc/dev/JavaScale/src/com/nighthacking/recipes/PourOverCoffeeJavaOne.java</file>
+            <file>file:/Users/sjc/dev/JavaScale/src/com/nighthacking/scales/SerialScale.java</file>
+            <file>file:/Users/sjc/dev/JavaScale/build.xml</file>
+            <file>file:/Users/sjc/dev/JavaScale/src/com/nighthacking/recipe/GuiRecipeRunner.java</file>
+            <file>file:/Users/sjc/dev/JavaScale/src/com/nighthacking/scales/UsbScale.java</file>
+            <file>file:/Users/sjc/dev/JavaScale/src/com/nighthacking/UsbScaleTest.java</file>
+            <file>file:/Users/sjc/dev/JavaScale/src/com/nighthacking/recipe/CommandLineRecipeRunner.java</file>
+            <file>file:/Users/sjc/dev/JavaScale/src/com/nighthacking/recipe/Ingredient.java</file>
+            <file>file:/Users/sjc/dev/JavaScale/src/com/nighthacking/ui/UIRecipeRunner.java</file>
+            <file>file:/Users/sjc/dev/JavaScale/src/com/nighthacking/scales/Scale.java</file>
+            <file>file:/Users/sjc/dev/JavaScale/src/com/nighthacking/recipe/RecipeRunner.java</file>
+            <file>file:/Users/sjc/dev/JavaScale/src/com/nighthacking/SerialScaleTest.java</file>
+            <file>file:/Users/sjc/dev/JavaScale/src/com/nighthacking/ui/UIController.java</file>
+        </group>
+    </open-files>
+</project-private>

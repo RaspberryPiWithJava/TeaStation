@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nighthacking.ui.UIController">
+   <children>
+      <ImageView fitHeight="800.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/Slide1.png" />
+         </image>
+      </ImageView>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0">
+         <bottom>
+            <HBox alignment="CENTER" prefHeight="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button id="back" fx:id="previous" mnemonicParsing="false" text="&lt;" />
+                  <TextArea id="message" fx:id="message" prefHeight="200.0" text="Welcome to the Java with Raspberry Pi Coffee Demo.">
+                     <font>
+                        <Font size="28.0" />
+                     </font></TextArea>
+                  <Button id="forward" fx:id="next" mnemonicParsing="false" text="&gt;" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+         </bottom>
+         <top>
+            <HBox alignment="CENTER_RIGHT" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button id="quit" fx:id="quit" mnemonicParsing="false" onAction="#quit" text="Quit" />
+               </children>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </BorderPane.margin>
+            </HBox>
+         </top>
+      </BorderPane>
+   </children>
+</StackPane>
