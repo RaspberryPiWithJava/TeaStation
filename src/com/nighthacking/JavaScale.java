@@ -7,6 +7,7 @@ import com.nighthacking.recipes.PourOverCoffeeJavaOne;
 import com.nighthacking.recipes.Tea;
 import com.nighthacking.scales.SerialScale;
 import com.nighthacking.temperature.OneWireTempSensor;
+import com.nighthacking.ui.UIRecipeRunner;
 
 /**
  * @author Stephen Chin <steveonjava@gmail.com>
@@ -14,7 +15,7 @@ import com.nighthacking.temperature.OneWireTempSensor;
 public class JavaScale {
 
   public static void main(String[] args) throws InterruptedException {
-    RecipeRunner runner = new CommandLineRecipeRunner();
+    RecipeRunner runner = new UIRecipeRunner();
     runner.setScale(SerialScale.createValor7000());
     runner.setTemperatureSensor(new OneWireTempSensor());
     runner.runRecipe(new Tea(Tea.TeaType.OOLONG));
