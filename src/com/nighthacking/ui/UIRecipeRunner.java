@@ -1,31 +1,102 @@
 package com.nighthacking.ui;
 
 import com.nighthacking.recipe.Display;
+import com.nighthacking.recipe.Recipe;
 import com.nighthacking.recipe.RecipeRunner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.application.Application;
+import com.nighthacking.recipe.Step;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import javafx.concurrent.Task;
 
 /**
  * @author Stephen Chin <steveonjava@gmail.com>
  */
 public class UIRecipeRunner extends RecipeRunner {
 
-  private Display display;
+  private final UIController controller;
+  private final ExecutorService executor = Executors.newSingleThreadExecutor();
+  private Recipe recipe;
+  private int currentStep = 0;
+  private StepTask currentTask;
+
+  public UIRecipeRunner(UIController controller) {
+    this.controller = controller;
+  }
+
+  @Override
+  public void runRecipe(Recipe recipe) throws InterruptedException {
+    this.recipe = recipe;
+    initRecipe(recipe);
+    executeStep();
+  }
+
+  private void executeStep() {
+    currentTask = new StepTask(recipe.steps()[currentStep]);
+    currentTask.setOnSucceeded(e -> {
+      if (!nextStep())
+        controller.showRestart();
+    });
+    executor.submit(currentTask);
+  }
   
+  public boolean previousStep() {
+    controller.hideProgressBar();
+    if (currentStep <= 1) return false;
+    if (currentTask.isRunning()) currentTask.cancel();
+    boolean foundAction = false;
+    while (currentStep > 0) {
+      currentStep--;
+      if (recipe.steps()[currentStep].requiresAction()) {
+        if (foundAction) {
+          currentStep++;
+          break;
+        } else {
+          foundAction = true;
+        }
+      }
+    }
+    executeStep();
+    return true;
+  }
+  
+  public boolean nextStep() {
+    controller.hideProgressBar();
+    if (currentStep >= recipe.steps().length - 1) return false;
+    if (currentTask.isRunning()) currentTask.cancel();
+    currentStep++;
+    executeStep();
+    return true;
+  }
+
   @Override
   public Display getDisplay() {
-    if (display == null) {
-      new Thread(() -> Application.launch(UIDisplay.class)).start();
-      System.out.println("sleeping");
-      try {
-        Thread.sleep(12000);
-      } catch (InterruptedException ex) {
-        Logger.getLogger(UIRecipeRunner.class.getName()).log(Level.SEVERE, null, ex);
-      }
-      System.out.println("done sleeping");
-      display = UIDisplay.instance;
-    }
-    return display;
+    return controller;
   }
+
+  @Override
+  public void close() {
+    executor.shutdownNow();
+    super.close();
+  }
+
+  void restart() {
+    currentStep = 0;
+    executeStep();
+  }
+  
+  public class StepTask extends Task {
+
+    private final Step step;
+
+    public StepTask(Step step) {
+      this.step = step;
+    }
+
+    @Override
+    protected Object call() throws Exception {
+      step.execute(UIRecipeRunner.this);
+      return null;
+    }
+  }
+
 }

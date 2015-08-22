@@ -5,9 +5,7 @@ package com.nighthacking.recipe;
  */
 public interface Display {
 
-    void say(String message);
+  void say(String message, Object... args);
 
-    void say(String message, Object... args);
-
-    void countdown(int seconds) throws InterruptedException;
+  void progress(double percent, String message, Object... args);
 }

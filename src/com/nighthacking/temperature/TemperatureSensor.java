@@ -16,7 +16,7 @@ public interface TemperatureSensor {
 
   double getTemperature();
 
-  void waitFor(DoublePredicate condition);
+  void waitFor(DoublePredicate condition) throws InterruptedException;
 
   /**
    * Close resources that are in use by the temperature sensor implementation.

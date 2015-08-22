@@ -130,19 +130,19 @@ public class UsbScale implements Scale, UsbPipeListener {
   }
 
   @Override
-  public void waitFor(DoublePredicate condition) {
+  public void waitFor(DoublePredicate condition) throws InterruptedException {
     while (!condition.test(getWeight())) {
-      scalePhaser.awaitAdvance(scalePhaser.getPhase());
+      scalePhaser.awaitAdvanceInterruptibly(scalePhaser.getPhase());
     }
   }
 
   @Override
-  public void waitForStable(DoublePredicate condition) {
+  public void waitForStable(DoublePredicate condition) throws InterruptedException {
     double lastWeight, currentWeight = getWeight();
     do {
       lastWeight = currentWeight;
       while (!stable || empty || negative || lastWeight == currentWeight) {
-        scalePhaser.awaitAdvance(scalePhaser.getPhase());
+        scalePhaser.awaitAdvanceInterruptibly(scalePhaser.getPhase());
         currentWeight = getWeight();
       }
     } while (!condition.test(currentWeight));

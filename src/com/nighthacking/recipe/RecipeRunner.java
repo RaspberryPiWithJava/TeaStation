@@ -34,6 +34,13 @@ public abstract class RecipeRunner implements RecipeEnvironment {
   }
 
   public void runRecipe(Recipe recipe) throws InterruptedException {
+    initRecipe(recipe);
+    for (Step step : recipe.steps()) {
+      step.execute(this);
+    }
+  }
+
+  protected void initRecipe(Recipe recipe) throws InterruptedException {
     getDisplay().say(recipe.description());
     if (getScale() != null) {
       getScale().waitFor(w -> getScale().isStable());
@@ -41,10 +48,6 @@ public abstract class RecipeRunner implements RecipeEnvironment {
         getDisplay().say("Please empty the scale before we begin");
         getScale().waitFor(w -> w == 0);
       }
-    }
-
-    for (Step step : recipe.steps()) {
-      step.execute(this);
     }
   }
 

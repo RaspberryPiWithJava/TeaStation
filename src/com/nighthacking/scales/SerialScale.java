@@ -41,7 +41,7 @@ public class SerialScale implements Scale {
   private Serial serial;
   private String data = "";
   private volatile double weight;
-  private volatile boolean stable;
+  private volatile boolean stable = true;
   
   @Override
   public void connect() {
@@ -69,16 +69,16 @@ public class SerialScale implements Scale {
   }
 
   @Override
-  public void waitFor(DoublePredicate condition) {
+  public void waitFor(DoublePredicate condition) throws InterruptedException {
     while (!condition.test(weight)) {
-      scalePhaser.awaitAdvance(scalePhaser.getPhase());
+      scalePhaser.awaitAdvanceInterruptibly(scalePhaser.getPhase());
     }
   }
 
   @Override
-  public void waitForStable(DoublePredicate condition) {
+  public void waitForStable(DoublePredicate condition) throws InterruptedException {
     while (!stable || !condition.test(weight)) {
-      scalePhaser.awaitAdvance(scalePhaser.getPhase());
+      scalePhaser.awaitAdvanceInterruptibly(scalePhaser.getPhase());
     }
   }
 

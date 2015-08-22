@@ -60,7 +60,8 @@ public class Tea implements Recipe {
       Step.waitFor(tea),
       Step.tare(),
       Step.say("Now pour " + water),
-      Step.waitFor(water),
+      Step.waitForAtLeast(water),
+      Step.say("Let the tea steep for " + type.time + " seconds"),
       Step.countdown(type.time),
       Step.say("Remove your leaves from the tea and enjoy!")
     };

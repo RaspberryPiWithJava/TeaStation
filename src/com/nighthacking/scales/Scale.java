@@ -38,8 +38,9 @@ public interface Scale {
    * predicate condition is the scale weight.
    *
    * @param condition Predicate lambda expression
+   * @throws java.lang.InterruptedException
    */
-  void waitFor(DoublePredicate condition);
+  void waitFor(DoublePredicate condition) throws InterruptedException;
 
   /**
    * Block until the condition is met (returns true). The value passed in to the
@@ -50,8 +51,9 @@ public interface Scale {
    * overweight, and zero readings will never trigger this condition.
    *
    * @param condition Predicate lambda expression
+   * @throws java.lang.InterruptedException
    */
-  void waitForStable(DoublePredicate condition);
+  void waitForStable(DoublePredicate condition) throws InterruptedException;
 
   /**
    * Zero the scale, or throw an exception if programmatic taring is not

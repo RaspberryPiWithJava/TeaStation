@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.DoublePredicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Stream;
 
 /**
  * @author Stephen Chin <steveonjava@gmail.com>
@@ -42,9 +43,8 @@ public class OneWireTempSensor implements TemperatureSensor {
 
   public void pollForTemperature() {
     while (running) {
-      try {
-        Optional<String> temp = Files.lines(sensorFile).filter(
-            l -> l.contains("t=")).findAny();
+      try (Stream<String> lines = Files.lines(sensorFile)) {
+        Optional<String> temp = lines.filter(l -> l.contains("t=")).findAny();
         if (temp.isPresent()) {
           temperature = Integer.parseInt(temp.get().substring(
               temp.get().indexOf("t=") + 2)) / 1000d;
@@ -66,9 +66,9 @@ public class OneWireTempSensor implements TemperatureSensor {
   }
 
   @Override
-  public void waitFor(DoublePredicate condition) {
+  public void waitFor(DoublePredicate condition) throws InterruptedException {
     while (!condition.test(temperature)) {
-      tempPhaser.awaitAdvance(tempPhaser.getPhase());
+      tempPhaser.awaitAdvanceInterruptibly(tempPhaser.getPhase());
     }
   }
 
