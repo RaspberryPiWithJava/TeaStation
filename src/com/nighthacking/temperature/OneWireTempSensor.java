@@ -28,7 +28,7 @@ public class OneWireTempSensor implements TemperatureSensor {
       Optional<Path> deviceFolder = Files.list(w1Folder).filter(
           f -> f.getFileName().toString().startsWith("28")).findFirst();
       if (!deviceFolder.isPresent()) {
-        throw new IllegalStateException("No 1-wire device found");
+        throw new IllegalStateException("No 1-Wire device found");
       }
       sensorFile = deviceFolder.get().resolve("w1_slave");
     } catch (IOException ex) {
