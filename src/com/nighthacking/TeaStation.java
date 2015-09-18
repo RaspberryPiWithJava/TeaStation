@@ -1,17 +1,10 @@
 package com.nighthacking;
 
-import com.nighthacking.recipe.CommandLineRecipeRunner;
-import com.nighthacking.recipe.RecipeRunner;
-import com.nighthacking.recipes.Tea;
-import com.nighthacking.scales.SerialScale;
-import com.nighthacking.temperature.OneWireTempSensor;
-import com.nighthacking.ui.UIRecipeRunner;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.transform.Scale;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
